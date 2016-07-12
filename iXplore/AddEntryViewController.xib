@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddEntryViewController" customModule="iXplore" customModuleProvider="target">
+            <connections>
+                <outlet property="latitudeField" destination="wna-Gn-mmO" id="Ksh-b3-CcC"/>
+                <outlet property="longitudeField" destination="dIg-he-ikr" id="GP2-KO-TdV"/>
+                <outlet property="notesField" destination="sLg-fu-yra" id="FQA-i6-iiP"/>
+                <outlet property="titleField" destination="Nar-MC-ijL" id="QSO-8T-TBs"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nar-MC-ijL" userLabel="Title">
+                    <rect key="frame" x="175" y="195" width="250" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="f5K-xF-mM6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Notes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sLg-fu-yra" userLabel="Notes">
+                    <rect key="frame" x="175" y="255" width="250" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="ZPa-bt-wn2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Latitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wna-Gn-mmO" userLabel="Latitude">
+                    <rect key="frame" x="175" y="315" width="250" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="k9Y-nY-xnF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Longitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dIg-he-ikr" userLabel="Longitude">
+                    <rect key="frame" x="175" y="375" width="250" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="omm-EQ-Btz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Jb-dD-35J">
+                    <rect key="frame" x="20" y="30" width="70" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="0Kc-yO-6QO"/>
+                    </constraints>
+                    <state key="normal" title="Cancel"/>
+                    <connections>
+                        <action selector="cancelAddEntry:" destination="-1" eventType="touchUpInside" id="yUF-sP-KAq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwG-VS-bXk">
+                    <rect key="frame" x="510" y="30" width="70" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="Tuh-px-919"/>
+                    </constraints>
+                    <state key="normal" title="Save"/>
+                    <connections>
+                        <action selector="saveNewEntry:" destination="-1" eventType="touchUpInside" id="bNq-Pg-Uez"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="dIg-he-ikr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1XA-cb-htT"/>
+                <constraint firstItem="wna-Gn-mmO" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="1.1" id="1vz-iD-UYe"/>
+                <constraint firstItem="pwG-VS-bXk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="6u9-mk-csu"/>
+                <constraint firstItem="sLg-fu-yra" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9qA-hT-xEC"/>
+                <constraint firstItem="dIg-he-ikr" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="1.3" id="KFK-Fs-26X"/>
+                <constraint firstItem="6Jb-dD-35J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="QRl-gm-pjd"/>
+                <constraint firstItem="6Jb-dD-35J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="QmH-O0-V8P"/>
+                <constraint firstAttribute="trailing" secondItem="pwG-VS-bXk" secondAttribute="trailing" constant="20" id="RIK-pU-8GQ"/>
+                <constraint firstItem="wna-Gn-mmO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Tp7-2m-PIF"/>
+                <constraint firstItem="sLg-fu-yra" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.9" id="cBf-tD-e1a"/>
+                <constraint firstItem="Nar-MC-ijL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="h5r-vq-TLy"/>
+                <constraint firstItem="Nar-MC-ijL" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.7" id="vCV-vQ-OrI"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
