@@ -10,9 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource /*, CLLocationManagerDelegate*/{
-    
-    //var locationManager = CLLocationManager()
+class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
+
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -22,10 +21,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         
         super.viewDidLoad()
         
-        var journalEntries = JournalEntryController.sharedInstance.journalEntryList
+        let journalEntries = JournalEntryController.sharedInstance.journalEntryList
         
-        //locationManager.delegate = self
-
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addButtonClicked))
         
         self.navigationItem.title = "iXplore"
@@ -54,35 +51,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     
     override func viewWillAppear(animated: Bool) {
         
-        var journalEntries = JournalEntryController.sharedInstance.journalEntryList
+        let journalEntries = JournalEntryController.sharedInstance.journalEntryList
         mapView.addAnnotations(journalEntries)
         tableView.reloadData()
         
     }
     
-    func addButtonClicked(){
+    func addButtonClicked() {
         
         let addEntryController = AddEntryViewController(nibName: "AddEntryViewController", bundle: nil)
-        
-        // need NSLocationWhenInUseUsageDescription in info.plist
-        
-        /*locationManager.requestWhenInUseAuthorization()
-        
-        //switch locationManager.authorizationStatus()
-        
-        locationManager.startUpdatingLocation()
-        
-        sender.setTitle(String(locationManager.location!), forState: .Normal)
-        
-        locationManager.stopUpdatingLocation()*/
-        
         self.presentViewController(addEntryController, animated: true, completion: nil)
         
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var journalEntries = JournalEntryController.sharedInstance.journalEntryList
+        let journalEntries = JournalEntryController.sharedInstance.journalEntryList
         
         return journalEntries.count
         
@@ -139,6 +123,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
 
     /*func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
+        if annotation is MKUserLocation {
+            return nil
+        }
+     
         let identifier = "Journal Entry"
         
         let annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
@@ -160,13 +148,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         return annotationView
         
     }*/
+
     
-    /*func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        print("authorization status has been changed")
-    }
- 
-     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        print("location has been updated")
-     }*/
+
 
 }

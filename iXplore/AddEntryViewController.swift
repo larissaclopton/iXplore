@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class AddEntryViewController: UIViewController {
+class AddEntryViewController: UIViewController, CLLocationManagerDelegate {
 
     
     @IBOutlet weak var titleField: UITextField!
@@ -19,10 +19,16 @@ class AddEntryViewController: UIViewController {
     @IBOutlet weak var latitudeField: UITextField!
     
     @IBOutlet weak var longitudeField: UITextField!
+    
+    var locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -46,6 +52,16 @@ class AddEntryViewController: UIViewController {
         
     }
     
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location = locations.last!
+        latitudeField.text = String(location.coordinate.latitude)
+        longitudeField.text = String(location.coordinate.longitude)
+        
+        locationManager.stopUpdatingLocation()
+        
+    }
+    
     @IBAction func saveNewEntry(sender: UIButton) {
         
         if (titleField.text! == "" || latitudeField.text! == "" || longitudeField.text! == "") {
@@ -58,15 +74,9 @@ class AddEntryViewController: UIViewController {
             self.presentViewController(errorAlert, animated: true, completion: nil)
         }
         else {
-            var newJournalEntry = JournalEntry(title: titleField.text!, coordinate: CLLocationCoordinate2D(latitude: Double(latitudeField.text!)!, longitude:  Double(longitudeField.text!)!))
+            let newJournalEntry = JournalEntry(title: titleField.text!, coordinate: CLLocationCoordinate2D(latitude: Double(latitudeField.text!)!, longitude:  Double(longitudeField.text!)!))
         
             let date = NSDate()
-            let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components([.Day , .Month , .Year], fromDate: date)
-        
-            let year =  components.year
-            let month = components.month
-            let day = components.day
         
             newJournalEntry.date = date
             newJournalEntry.notes = notesField.text!
