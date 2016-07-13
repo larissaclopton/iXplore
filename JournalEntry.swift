@@ -15,7 +15,8 @@ class JournalEntry: NSObject, MKAnnotation, NSCoding {
     var coordinate: CLLocationCoordinate2D
     
     var notes: String = ""
-    var date: NSDate? = nil
+    var date: NSDate?
+    var photo: UIImage?
     
     init(title: String, coordinate: CLLocationCoordinate2D) {
         
@@ -30,14 +31,13 @@ class JournalEntry: NSObject, MKAnnotation, NSCoding {
         title = (coder.decodeObjectForKey("title") as? String) ?? ""
         notes = (coder.decodeObjectForKey("notes") as? String) ?? ""
         
-       // coordinate = CLLocationCoordinate2D()
         let latitude = (coder.decodeObjectForKey("latitude") as? Double) ?? 0.0
         let longitude = (coder.decodeObjectForKey("longitude") as? Double) ?? 0.0
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-       // coordinate.latitude = (coder.decodeObjectForKey("latitude") as? Double) ?? 0.0
-        //coordinate.longitude = (coder.decodeObjectForKey("longitude") as? Double) ?? 0.0
         
-        date = (coder.decodeObjectForKey("date") as? NSDate)!
+        date = (coder.decodeObjectForKey("date") as? NSDate)
+        
+        photo = (coder.decodeObjectForKey("photo") as? UIImage)
        
     }
     
@@ -52,6 +52,7 @@ class JournalEntry: NSObject, MKAnnotation, NSCoding {
         aCoder.encodeObject(long, forKey: "longitude")
         aCoder.encodeObject(notes, forKey: "notes")
         aCoder.encodeObject(date, forKey: "date")
+        aCoder.encodeObject(photo, forKey: "photo")
         
         
     }

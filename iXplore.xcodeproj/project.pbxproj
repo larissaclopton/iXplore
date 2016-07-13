@@ -17,6 +17,8 @@
 		4ECC625B1D33C2CC005C61EC /* AddEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECC62591D33C2CC005C61EC /* AddEntryViewController.swift */; };
 		4ECC625C1D33C2CC005C61EC /* AddEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ECC625A1D33C2CC005C61EC /* AddEntryViewController.xib */; };
 		4EE76D601D35096100A75AEB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EE76D5F1D35096100A75AEB /* MapKit.framework */; };
+		4EE76DA31D366F8800A75AEB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE76DA11D366F8800A75AEB /* TableViewCell.swift */; };
+		4EE76DA41D366F8800A75AEB /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EE76DA21D366F8800A75AEB /* TableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		4ECC62591D33C2CC005C61EC /* AddEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEntryViewController.swift; sourceTree = "<group>"; };
 		4ECC625A1D33C2CC005C61EC /* AddEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEntryViewController.xib; sourceTree = "<group>"; };
 		4EE76D5F1D35096100A75AEB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4EE76DA11D366F8800A75AEB /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		4EE76DA21D366F8800A75AEB /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 				4ECC62591D33C2CC005C61EC /* AddEntryViewController.swift */,
 				4ECC625A1D33C2CC005C61EC /* AddEntryViewController.xib */,
 				4EC6BA681D3018AF00ACC782 /* MapViewController.swift */,
+				4EE76DA11D366F8800A75AEB /* TableViewCell.swift */,
+				4EE76DA21D366F8800A75AEB /* TableViewCell.xib */,
 				4EC6BA691D3018AF00ACC782 /* MapViewController.xib */,
 				4EC6BA561D30172A00ACC782 /* AppDelegate.swift */,
 				4EC6BA5D1D30172A00ACC782 /* Assets.xcassets */,
@@ -139,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EC6BA611D30172A00ACC782 /* LaunchScreen.storyboard in Resources */,
+				4EE76DA41D366F8800A75AEB /* TableViewCell.xib in Resources */,
 				4ECC625C1D33C2CC005C61EC /* AddEntryViewController.xib in Resources */,
 				4EC6BA6B1D3018AF00ACC782 /* MapViewController.xib in Resources */,
 				4EC6BA5E1D30172A00ACC782 /* Assets.xcassets in Resources */,
@@ -155,6 +162,7 @@
 				4E62D6EC1D32F40400FA206D /* JournalEntryController.swift in Sources */,
 				4ECC625B1D33C2CC005C61EC /* AddEntryViewController.swift in Sources */,
 				4EC6BA571D30172A00ACC782 /* AppDelegate.swift in Sources */,
+				4EE76DA31D366F8800A75AEB /* TableViewCell.swift in Sources */,
 				4E62D6EA1D32F08B00FA206D /* JournalEntry.swift in Sources */,
 				4EC6BA6A1D3018AF00ACC782 /* MapViewController.swift in Sources */,
 			);

@@ -20,6 +20,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        tableView.registerNib(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "Journal Entry")
     
         journalEntryList = JournalEntryController.sharedInstance.getEntries()
         
@@ -75,11 +77,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "Journal Entry")
-        
         let journalEntries = journalEntryList
         
-        cell.textLabel?.text = String("\(journalEntries[indexPath.row].title!)")
+        let cell = tableView.dequeueReusableCellWithIdentifier("Journal Entry", forIndexPath: indexPath) as! TableViewCell
+        
+        cell.entryTitle.text = "\(journalEntries[indexPath.row].title!)"
+        cell.entryDate.text = "\(journalEntries[indexPath.row].date!)"
+        cell.entryPhoto.image = journalEntries[indexPath.row].photo
         
         return cell
         
@@ -123,22 +127,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     }
 
     /*func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        if annotation is MKUserLocation {
-            return nil
-        }
      
         let identifier = "Journal Entry"
         
-        let annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
         
         if annotationView == nil {
+            
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             
             annotationView!.canShowCallout = true
             
             let leftLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-            leftLabel.textColor = UIColor.blackColor()
-            leftLabel.backgroundColor = UIColor.blueColor()
+            leftLabel.textColor = UIColor.blueColor()
+            leftLabel.backgroundColor = UIColor.whiteColor()
             
             annotationView!.leftCalloutAccessoryView = leftLabel
             

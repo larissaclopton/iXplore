@@ -9,8 +9,9 @@
 import UIKit
 import MapKit
 
-class AddEntryViewController: UIViewController, CLLocationManagerDelegate {
+class AddEntryViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var titleField: UITextField!
     
@@ -22,6 +23,9 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
 
+    let pickerController = UIImagePickerController()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +33,9 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
+        pickerController.delegate = self
+        
+        pickerController.sourceType = .PhotoLibrary
         // Do any additional setup after loading the view.
     }
 
@@ -79,6 +86,8 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate {
     
             newJournalEntry.date = NSDate()
             newJournalEntry.notes = notesField.text!
+            newJournalEntry.photo = imageView.image
+            
             var entryList = JournalEntryController.sharedInstance.getEntries()
             
             entryList += [newJournalEntry]
@@ -93,6 +102,25 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    @IBAction func selectImageTapped(sender: UIButton) {
+        self.presentViewController(pickerController, animated: true, completion: nil)
+    }
   
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            imageView.contentMode = .ScaleAspectFit
+            imageView.image = pickedImage
+            
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     
 }
