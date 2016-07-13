@@ -74,18 +74,25 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate {
             self.presentViewController(errorAlert, animated: true, completion: nil)
         }
         else {
-            let newJournalEntry = JournalEntry(title: titleField.text!, coordinate: CLLocationCoordinate2D(latitude: Double(latitudeField.text!)!, longitude:  Double(longitudeField.text!)!))
-        
-            let date = NSDate()
-        
-            newJournalEntry.date = date
-            newJournalEntry.notes = notesField.text!
             
-            JournalEntryController.sharedInstance.addNewEntry(newJournalEntry)
+            let newJournalEntry = JournalEntry(title: titleField.text!, coordinate: CLLocationCoordinate2D(latitude: Double(latitudeField.text!)!, longitude:  Double(longitudeField.text!)!))
+    
+            newJournalEntry.date = NSDate()
+            newJournalEntry.notes = notesField.text!
+            var entryList = JournalEntryController.sharedInstance.getEntries()
+            
+            entryList += [newJournalEntry]
+            
+            let manager = NSFileManager.defaultManager()
+            let documents = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            let fileURL = documents.URLByAppendingPathComponent("journalEntries.txt")
+
+            NSKeyedArchiver.archiveRootObject(entryList, toFile: fileURL.path!)
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
-
+  
+    
 }
