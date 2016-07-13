@@ -11,26 +11,26 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
-
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     
+    var journalEntryList: [JournalEntry] = []
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        let journalEntries = JournalEntryController.sharedInstance.journalEntryList
+    
+        journalEntryList = JournalEntryController.sharedInstance.getEntries()
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addButtonClicked))
         
         self.navigationItem.title = "iXplore"
         self.navigationItem.rightBarButtonItem = addButton
         
-        let location = CLLocationCoordinate2D(latitude: -33.9, longitude: 18.4)
+        let location = CLLocationCoordinate2D(latitude: -34.0, longitude: 18.5)
         
-        let span = MKCoordinateSpanMake(0.1, 0.1)
+        let span = MKCoordinateSpanMake(0.3, 0.3)
         
         let region = MKCoordinateRegionMake(location, span)
         
@@ -41,7 +41,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         mapView.zoomEnabled = true
         mapView.scrollEnabled = true
         
-        mapView.addAnnotations(journalEntries)
+        mapView.addAnnotations(journalEntryList)
 
         mapView.delegate = self
         tableView.dataSource = self
@@ -51,8 +51,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     
     override func viewWillAppear(animated: Bool) {
         
-        let journalEntries = JournalEntryController.sharedInstance.journalEntryList
-        mapView.addAnnotations(journalEntries)
+        journalEntryList = JournalEntryController.sharedInstance.getEntries()
+        
+        mapView.addAnnotations(journalEntryList)
         tableView.reloadData()
         
     }
@@ -66,7 +67,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let journalEntries = JournalEntryController.sharedInstance.journalEntryList
+        let journalEntries = journalEntryList
         
         return journalEntries.count
         
@@ -76,7 +77,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         
         let cell = UITableViewCell(style: .Default, reuseIdentifier: "Journal Entry")
         
-        let journalEntries = JournalEntryController.sharedInstance.journalEntryList
+        let journalEntries = journalEntryList
         
         cell.textLabel?.text = String("\(journalEntries[indexPath.row].title!)")
         
@@ -92,7 +93,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        var journalEntries = JournalEntryController.sharedInstance.journalEntryList
+        var journalEntries = journalEntryList
         
         if editingStyle == UITableViewCellEditingStyle.Delete {
             journalEntries.removeAtIndex(indexPath.row)
@@ -104,7 +105,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var journalEntries = JournalEntryController.sharedInstance.journalEntryList
+        var journalEntries = journalEntryList
         
         let chosenJournalEntry = journalEntries[indexPath.row]
         
@@ -148,8 +149,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         return annotationView
         
     }*/
-
-    
 
 
 }
