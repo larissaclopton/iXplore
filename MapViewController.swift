@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FBSDKLoginKit
 
 class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -22,7 +23,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         tableView.registerNib(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "Journal Entry")
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addButtonClicked))
-        
+    
         self.navigationItem.title = "iXplore"
         self.navigationItem.rightBarButtonItem = addButton
         
@@ -85,11 +86,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            JournalEntryController.sharedInstance.currentEntries.removeAtIndex(indexPath.row)
+            
+            let removed = JournalEntryController.sharedInstance.currentEntries.removeAtIndex(indexPath.row)
             
             tableView.reloadData()
+            
+            mapView.removeAnnotation(removed)
+            
+            let manager = NSFileManager.defaultManager()
+            let documents = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            let fileURL = documents.URLByAppendingPathComponent(removed.ID.UUIDString)
+            
+            do {
+                try NSFileManager.defaultManager().removeItemAtPath(fileURL.path!)
+            } catch {
+                print("cannot remove file")
+            }
+            
         }
         
     }

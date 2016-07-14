@@ -88,7 +88,12 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate, UIIma
     
             newJournalEntry.date = dateField.text!
             newJournalEntry.notes = notesField.text!
-            newJournalEntry.photo = imageView.image
+            if imageView.image! == UIImage(imageLiteral: "addPhotoImage.jpg") {
+                newJournalEntry.photo = nil
+            }
+            else {
+                newJournalEntry.photo = imageView.image
+            }
             
             JournalEntryController.sharedInstance.currentEntries.append(newJournalEntry)
             
