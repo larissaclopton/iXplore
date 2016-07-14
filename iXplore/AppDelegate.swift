@@ -17,11 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let mapViewController = MapViewController(nibName: "MapViewController", bundle: nil)
+        //let mapViewController = MapViewController(nibName: "MapViewController", bundle: nil)
         
-        //let loginViewController = FBLoginViewController(nibName: "FBLoginViewController", bundle: nil)
+        let loginViewController = FBLoginViewController(nibName: "FBLoginViewController", bundle: nil)
 
-        let navigationController = UINavigationController(rootViewController: mapViewController)
+        let navigationController = UINavigationController(rootViewController: loginViewController)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         

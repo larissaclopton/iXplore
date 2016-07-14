@@ -129,6 +129,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
             
             annotationView!.leftCalloutAccessoryView = leftLabel
             
+            mapView.addAnnotation(annotation)
+            
         }
  
         let label = annotationView!.leftCalloutAccessoryView as! UILabel
@@ -136,6 +138,5 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         return annotationView
         
     }*/
-
-
+    
 }
