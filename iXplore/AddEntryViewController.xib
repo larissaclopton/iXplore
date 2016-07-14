@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddEntryViewController" customModule="iXplore" customModuleProvider="target">
             <connections>
+                <outlet property="dateField" destination="vcU-am-0bI" id="f3a-wg-9qg"/>
                 <outlet property="imageView" destination="w7i-qI-Vbz" id="Vy9-5Y-U0D"/>
                 <outlet property="latitudeField" destination="wna-Gn-mmO" id="Ksh-b3-CcC"/>
                 <outlet property="longitudeField" destination="dIg-he-ikr" id="GP2-KO-TdV"/>
@@ -92,6 +93,14 @@
                         <constraint firstAttribute="width" constant="250" id="if9-9y-IdP"/>
                     </constraints>
                 </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vcU-am-0bI" customClass="UIDateField" customModule="iXplore" customModuleProvider="target">
+                    <rect key="frame" x="175" y="75" width="250" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="bcH-ay-2Qh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="0.81054250559999996" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -101,9 +110,11 @@
                 <constraint firstItem="sLg-fu-yra" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9qA-hT-xEC"/>
                 <constraint firstItem="w7i-qI-Vbz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ggf-B3-PfX"/>
                 <constraint firstItem="dIg-he-ikr" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="1.1" id="KFK-Fs-26X"/>
+                <constraint firstItem="vcU-am-0bI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Nek-cp-ZYU"/>
                 <constraint firstItem="6Jb-dD-35J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="QRl-gm-pjd"/>
                 <constraint firstItem="6Jb-dD-35J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="QmH-O0-V8P"/>
                 <constraint firstAttribute="trailing" secondItem="pwG-VS-bXk" secondAttribute="trailing" constant="20" id="RIK-pU-8GQ"/>
+                <constraint firstItem="vcU-am-0bI" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.3" id="RhR-ZJ-8qT"/>
                 <constraint firstItem="wna-Gn-mmO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Tp7-2m-PIF"/>
                 <constraint firstItem="sLg-fu-yra" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.7" id="cBf-tD-e1a"/>
                 <constraint firstItem="Nar-MC-ijL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="h5r-vq-TLy"/>

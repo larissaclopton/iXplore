@@ -15,7 +15,7 @@ class JournalEntry: NSObject, MKAnnotation, NSCoding {
     var coordinate: CLLocationCoordinate2D
     
     var notes: String = ""
-    var date: NSDate?
+    var date: String = ""
     var photo: UIImage?
     
     var ID: NSUUID
@@ -38,7 +38,7 @@ class JournalEntry: NSObject, MKAnnotation, NSCoding {
         let longitude = (coder.decodeObjectForKey("longitude") as? Double) ?? 0.0
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
-        date = (coder.decodeObjectForKey("date") as? NSDate)
+        date = (coder.decodeObjectForKey("date") as? String) ?? ""
         
         photo = (coder.decodeObjectForKey("photo") as? UIImage)
         

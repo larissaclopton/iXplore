@@ -21,6 +21,8 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate, UIIma
     
     @IBOutlet weak var longitudeField: UITextField!
     
+    @IBOutlet weak var dateField: UIDateField!
+    
     var locationManager = CLLocationManager()
 
     let pickerController = UIImagePickerController()
@@ -84,7 +86,7 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate, UIIma
             
             let newJournalEntry = JournalEntry(title: titleField.text!, coordinate: CLLocationCoordinate2D(latitude: Double(latitudeField.text!)!, longitude:  Double(longitudeField.text!)!))
     
-            newJournalEntry.date = NSDate()
+            newJournalEntry.date = dateField.text!
             newJournalEntry.notes = notesField.text!
             newJournalEntry.photo = imageView.image
             

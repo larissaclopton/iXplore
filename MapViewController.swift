@@ -69,8 +69,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         
         let entry = JournalEntryController.sharedInstance.currentEntries[indexPath.row]
         
-        cell.entryTitle.text = "\(entry.title!)"
-        cell.entryDate.text = "\(entry.date!)"
+        cell.entryTitle.text = entry.title!
+        cell.entryDate.text = entry.date
         cell.entryPhoto.image = entry.photo
         
         return cell

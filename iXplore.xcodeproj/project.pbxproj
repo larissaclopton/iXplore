@@ -22,6 +22,7 @@
 		4EE76DA41D366F8800A75AEB /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EE76DA21D366F8800A75AEB /* TableViewCell.xib */; };
 		4EE76DC51D36C3E700A75AEB /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE76DC31D36C3E700A75AEB /* FBLoginViewController.swift */; };
 		4EE76DC61D36C3E700A75AEB /* FBLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EE76DC41D36C3E700A75AEB /* FBLoginViewController.xib */; };
+		4EE76DEC1D37C47E00A75AEB /* UIDateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE76DEB1D37C47E00A75AEB /* UIDateField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		4EE76DA21D366F8800A75AEB /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		4EE76DC31D36C3E700A75AEB /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
 		4EE76DC41D36C3E700A75AEB /* FBLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBLoginViewController.xib; sourceTree = "<group>"; };
+		4EE76DEB1D37C47E00A75AEB /* UIDateField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDateField.swift; sourceTree = "<group>"; };
 		8962285C92B6222342984DE3 /* Pods-iXplore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iXplore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iXplore/Pods-iXplore.debug.xcconfig"; sourceTree = "<group>"; };
 		99D2BB2B723C0AA439411AB6 /* Pods_iXplore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iXplore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABBEAD27F72B2402B7071720 /* Pods-iXplore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iXplore.release.xcconfig"; path = "Pods/Target Support Files/Pods-iXplore/Pods-iXplore.release.xcconfig"; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				4ECC62591D33C2CC005C61EC /* AddEntryViewController.swift */,
 				4ECC625A1D33C2CC005C61EC /* AddEntryViewController.xib */,
+				4EE76DEB1D37C47E00A75AEB /* UIDateField.swift */,
 				4EC6BA681D3018AF00ACC782 /* MapViewController.swift */,
 				4EE76DA11D366F8800A75AEB /* TableViewCell.swift */,
 				4EE76DA21D366F8800A75AEB /* TableViewCell.xib */,
@@ -245,6 +248,7 @@
 				4ECC625B1D33C2CC005C61EC /* AddEntryViewController.swift in Sources */,
 				4EC6BA571D30172A00ACC782 /* AppDelegate.swift in Sources */,
 				4EE76DA31D366F8800A75AEB /* TableViewCell.swift in Sources */,
+				4EE76DEC1D37C47E00A75AEB /* UIDateField.swift in Sources */,
 				4EE76DC51D36C3E700A75AEB /* FBLoginViewController.swift in Sources */,
 				4E62D6EA1D32F08B00FA206D /* JournalEntry.swift in Sources */,
 				4EC6BA6A1D3018AF00ACC782 /* MapViewController.swift in Sources */,
