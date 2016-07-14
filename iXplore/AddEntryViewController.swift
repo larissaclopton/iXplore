@@ -73,7 +73,7 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate, UIIma
     
     @IBAction func saveNewEntry(sender: UIButton) {
         
-        if (titleField.text! == "" || latitudeField.text! == "" || longitudeField.text! == "") {
+        if (titleField.text! == "" || latitudeField.text! == "" || longitudeField.text! == "" || dateField.text == "") {
             let errorAlert = UIAlertController(title: "Go Back", message: "Required fields have not been filled.", preferredStyle:UIAlertControllerStyle.Alert)
             
             let alertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -84,27 +84,45 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate, UIIma
         }
         else {
             
-            let newJournalEntry = JournalEntry(title: titleField.text!, coordinate: CLLocationCoordinate2D(latitude: Double(latitudeField.text!)!, longitude:  Double(longitudeField.text!)!))
+            if (latitudeField.text?.doubleValue != nil && longitudeField.text?.doubleValue != nil) {
+            
+                let newJournalEntry = JournalEntry(title: titleField.text!, coordinate: CLLocationCoordinate2D(latitude: Double(latitudeField.text!)!, longitude: Double(longitudeField.text!)!))
     
-            newJournalEntry.date = dateField.text!
-            newJournalEntry.notes = notesField.text!
-            if imageView.image! == UIImage(imageLiteral: "addPhotoImage.jpg") {
-                newJournalEntry.photo = nil
-            }
-            else {
-                newJournalEntry.photo = imageView.image
-            }
+                newJournalEntry.date = dateField.text!
+                newJournalEntry.notes = notesField.text!
+                if imageView.image! == UIImage(imageLiteral: "addPhotoImage.jpg") {
+                    newJournalEntry.photo = nil
+                }
+                else {
+                    newJournalEntry.photo = imageView.image
+                }
             
-            JournalEntryController.sharedInstance.currentEntries.append(newJournalEntry)
+                JournalEntryController.sharedInstance.currentEntries.append(newJournalEntry)
             
-            let manager = NSFileManager.defaultManager()
-            let documents = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-            let fileURL = documents.URLByAppendingPathComponent(newJournalEntry.ID.UUIDString)
+                let manager = NSFileManager.defaultManager()
+                let documents = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+                let fileURL = documents.URLByAppendingPathComponent(newJournalEntry.ID.UUIDString)
 
-            NSKeyedArchiver.archiveRootObject(newJournalEntry, toFile: fileURL.path!)
+                NSKeyedArchiver.archiveRootObject(newJournalEntry, toFile: fileURL.path!)
             
-            self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
+            
+            }
+            
+            else {
+                
+                let errorAlert = UIAlertController(title: "Invalid Coordinates", message: "Please provide valid coordinates.", preferredStyle:UIAlertControllerStyle.Alert)
+                
+                let alertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                
+                errorAlert.addAction(alertAction)
+                
+                self.presentViewController(errorAlert, animated: true, completion: nil)
+                
+            }
+            
         }
+        
     }
     
     @IBAction func selectImageTapped(sender: UIButton) {
@@ -119,7 +137,7 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate, UIIma
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-            imageView.contentMode = .ScaleAspectFit
+            imageView.contentMode = .ScaleToFill
             imageView.image = pickedImage
             
         }

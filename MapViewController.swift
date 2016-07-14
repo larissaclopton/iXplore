@@ -125,32 +125,32 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         
     }
 
-    /*func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
      
         let identifier = "Journal Entry"
         
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
         
+        if annotation.isKindOfClass(MKUserLocation) {
+            
+            return nil
+            
+        }
+        
         if annotationView == nil {
             
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             
             annotationView!.canShowCallout = true
-            
-            let leftLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-            leftLabel.textColor = UIColor.blueColor()
-            leftLabel.backgroundColor = UIColor.whiteColor()
-            
-            annotationView!.leftCalloutAccessoryView = leftLabel
             
             mapView.addAnnotation(annotation)
             
         }
  
-        let label = annotationView!.leftCalloutAccessoryView as! UILabel
-        label.text = annotation.title!
+        annotationView!.annotation = annotation
+        
         return annotationView
         
-    }*/
+    }
     
 }

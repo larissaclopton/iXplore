@@ -16,9 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qEG-Xl-X76" customClass="FBSDKLoginButton">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qEG-Xl-X76" customClass="FBSDKLoginButton">
                     <rect key="frame" x="277" y="285" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="bM1-VG-Oee"/>
                     </connections>
