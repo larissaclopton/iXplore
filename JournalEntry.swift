@@ -18,10 +18,13 @@ class JournalEntry: NSObject, MKAnnotation, NSCoding {
     var date: NSDate?
     var photo: UIImage?
     
+    var ID: NSUUID
+    
     init(title: String, coordinate: CLLocationCoordinate2D) {
         
         self.title = title
         self.coordinate = coordinate
+        self.ID = NSUUID()
         
         
     }
@@ -38,6 +41,8 @@ class JournalEntry: NSObject, MKAnnotation, NSCoding {
         date = (coder.decodeObjectForKey("date") as? NSDate)
         
         photo = (coder.decodeObjectForKey("photo") as? UIImage)
+        
+        ID = (coder.decodeObjectForKey("ID") as? NSUUID) ?? NSUUID()
        
     }
     
@@ -53,7 +58,7 @@ class JournalEntry: NSObject, MKAnnotation, NSCoding {
         aCoder.encodeObject(notes, forKey: "notes")
         aCoder.encodeObject(date, forKey: "date")
         aCoder.encodeObject(photo, forKey: "photo")
-        
+        aCoder.encodeObject(ID, forKey: "ID")
         
     }
     

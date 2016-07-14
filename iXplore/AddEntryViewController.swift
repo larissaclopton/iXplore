@@ -88,15 +88,13 @@ class AddEntryViewController: UIViewController, CLLocationManagerDelegate, UIIma
             newJournalEntry.notes = notesField.text!
             newJournalEntry.photo = imageView.image
             
-            var entryList = JournalEntryController.sharedInstance.getEntries()
-            
-            entryList += [newJournalEntry]
+            JournalEntryController.sharedInstance.currentEntries.append(newJournalEntry)
             
             let manager = NSFileManager.defaultManager()
             let documents = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-            let fileURL = documents.URLByAppendingPathComponent("journalEntries.txt")
+            let fileURL = documents.URLByAppendingPathComponent(newJournalEntry.ID.UUIDString)
 
-            NSKeyedArchiver.archiveRootObject(entryList, toFile: fileURL.path!)
+            NSKeyedArchiver.archiveRootObject(newJournalEntry, toFile: fileURL.path!)
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }

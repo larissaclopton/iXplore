@@ -15,15 +15,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     
-    var journalEntryList: [JournalEntry] = []
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         tableView.registerNib(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "Journal Entry")
-    
-        journalEntryList = JournalEntryController.sharedInstance.getEntries()
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addButtonClicked))
         
@@ -43,7 +39,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
         mapView.zoomEnabled = true
         mapView.scrollEnabled = true
         
-        mapView.addAnnotations(journalEntryList)
+        mapView.addAnnotations(JournalEntryController.sharedInstance.currentEntries)
 
         mapView.delegate = self
         tableView.dataSource = self
@@ -52,12 +48,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        journalEntryList = JournalEntryController.sharedInstance.getEntries()
-        
-        mapView.addAnnotations(journalEntryList)
+        mapView.addAnnotations(JournalEntryController.sharedInstance.currentEntries)
         tableView.reloadData()
-        
     }
     
     func addButtonClicked() {
@@ -68,22 +60,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        let journalEntries = journalEntryList
-        
-        return journalEntries.count
-        
+        return JournalEntryController.sharedInstance.currentEntries.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let journalEntries = journalEntryList
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("Journal Entry", forIndexPath: indexPath) as! TableViewCell
         
-        cell.entryTitle.text = "\(journalEntries[indexPath.row].title!)"
-        cell.entryDate.text = "\(journalEntries[indexPath.row].date!)"
-        cell.entryPhoto.image = journalEntries[indexPath.row].photo
+        let entry = JournalEntryController.sharedInstance.currentEntries[indexPath.row]
+        
+        cell.entryTitle.text = "\(entry.title!)"
+        cell.entryDate.text = "\(entry.date!)"
+        cell.entryPhoto.image = entry.photo
         
         return cell
         
@@ -97,10 +85,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        var journalEntries = journalEntryList
         
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            journalEntries.removeAtIndex(indexPath.row)
+            JournalEntryController.sharedInstance.currentEntries.removeAtIndex(indexPath.row)
             
             tableView.reloadData()
         }
@@ -109,9 +96,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UITableViewDelegat
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var journalEntries = journalEntryList
-        
-        let chosenJournalEntry = journalEntries[indexPath.row]
+        let chosenJournalEntry = JournalEntryController.sharedInstance.currentEntries[indexPath.row]
         
         let newCenter = chosenJournalEntry.coordinate
         

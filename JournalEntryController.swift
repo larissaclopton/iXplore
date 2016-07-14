@@ -17,26 +17,20 @@ class JournalEntryController {
     private init(){
         let manager = NSFileManager.defaultManager()
         let documents = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        let fileURL = documents.URLByAppendingPathComponent("journalEntries.txt")
-        if let entries = NSKeyedUnarchiver.unarchiveObjectWithFile(fileURL.path!) as? [JournalEntry] {
-            currentEntries = entries
+        
+        do {
+            let journalEntries = try manager.contentsOfDirectoryAtURL(documents, includingPropertiesForKeys: nil, options: [])
+            for file in journalEntries {
+                if let entry = NSKeyedUnarchiver.unarchiveObjectWithFile(file.path!) as? JournalEntry {
+                    currentEntries.append(entry)
+                }
+            }
+        
         }
-     
-    }
-    func getEntries() ->[JournalEntry]{
-        
-        var currentEntries = [JournalEntry]()
-        
-        let manager = NSFileManager.defaultManager()
-        let documents = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        let fileURL = documents.URLByAppendingPathComponent("journalEntries.txt")
-        if let entries = NSKeyedUnarchiver.unarchiveObjectWithFile(fileURL.path!) as? [JournalEntry] {
-            currentEntries = entries
+        catch {
+            // do nothing
         }
-        
-        return currentEntries
     }
-    
 
 }
 
